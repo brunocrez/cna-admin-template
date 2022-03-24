@@ -1,7 +1,11 @@
+import { Layout } from '../components/template/Layout'
+
 export default function Home() {
   return (
-    <div className='flex justify-center items-center h-screen'>
-      <h1>Admin Template</h1>
+    <div>
+      <Layout title='ABC' subTitle='CDE'>
+        <h6>building...</h6>
+      </Layout>
     </div>
   )
 }
