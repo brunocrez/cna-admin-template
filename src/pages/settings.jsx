@@ -1,9 +1,9 @@
 import { Layout } from '../components/template/Layout'
 
-export default function Home() {
+export default function Settings() {
   return (
     <div>
-      <Layout title='Home' subTitle='Welcome to Home Page!'>
+      <Layout title='Settings' subTitle='Welcome to Settings Page!'>
         <h6>building...</h6>
       </Layout>
     </div>
