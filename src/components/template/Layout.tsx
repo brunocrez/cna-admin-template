@@ -1,3 +1,7 @@
+import { useContext } from 'react'
+import ThemeContext from '../../data/context/ThemeContext'
+
+// components
 import { Content } from './Content'
 import { Header } from './Header'
 import { SideMenu } from './SideMenu'
@@ -9,8 +13,9 @@ type LayoutProps = {
 }
 
 export function Layout(props: LayoutProps) {
+  const { theme } = useContext(ThemeContext)
   return (
-    <div className={`flex h-screen w-screen`}>
+    <div className={`${theme} flex h-screen w-screen`}>
       <SideMenu />
       <div className={`flex flex-col bg-gray-200 w-full p-7 dark:bg-gray-800`}>
         <Header title={props.title} subTitle={props.subTitle} />
