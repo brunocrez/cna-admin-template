@@ -11,7 +11,9 @@ export function SideMenu() {
   }
 
   return (
-    <aside className='flex flex-col'>
+    <aside className={`
+      flex flex-col text-gray-700 dark:bg-gray-900
+    `}>
       <div className={`
         h-20 w-20 flex flex-col justify-center items-center
         bg-gradient-to-r from-indigo-500 to-purple-700        
@@ -27,7 +29,10 @@ export function SideMenu() {
           text='Sair'
           icon={LogoutIcon}
           onClick={handleLogout}
-          className={`text-red-600 hover:bg-red-500 hover:text-white`} />
+          className={`
+            text-red-600 dark:text-red-400
+            hover:bg-red-500 hover:text-white hover:dark:text-white
+          `} />
       </ul>
     </aside>
   )

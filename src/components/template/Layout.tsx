@@ -12,7 +12,7 @@ export function Layout(props: LayoutProps) {
   return (
     <div className={`flex h-screen w-screen`}>
       <SideMenu />
-      <div className={`flex flex-col bg-gray-200 w-full p-7`}>
+      <div className={`flex flex-col bg-gray-200 w-full p-7 dark:bg-gray-800`}>
         <Header title={props.title} subTitle={props.subTitle} />
         <Content>
           {props.children}
