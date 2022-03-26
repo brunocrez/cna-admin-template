@@ -18,7 +18,7 @@ export function InputField(props: InputFieldProps) {
         className={`
           px-4 py-3 bg-gray-200 mt-2
           border focus:border-blue-500 focus:bg-gray-50
-          focus:outline-none
+          focus:outline-none rounded-lg
         `}
       />
     </div>
