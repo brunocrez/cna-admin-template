@@ -5,11 +5,12 @@ import { HomeIcon, LogoutIcon, SettingsIcon } from '../icons'
 import { Logo } from './Logo'
 import { MenuItem } from './MenuItem'
 
-export function SideMenu() {
-  function handleLogout() {
-    console.log('LOGOUT!')
-  }
+// hooks
+import { useAuth } from '../../data/hook/useAuth'
 
+export function SideMenu() {
+  const { logout } = useAuth()
+  
   return (
     <aside className={`
       flex flex-col text-gray-700 dark:bg-gray-900
@@ -28,7 +29,7 @@ export function SideMenu() {
         <MenuItem
           text='Sair'
           icon={LogoutIcon}
-          onClick={handleLogout}
+          onClick={logout}
           className={`
             text-red-600 dark:text-red-400
             hover:bg-red-500 hover:text-white hover:dark:text-white
