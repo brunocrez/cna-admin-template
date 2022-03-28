@@ -1,0 +1,1 @@
+export const ADMIN_TEMPLATE_AUTH = 'admin-template-auth'

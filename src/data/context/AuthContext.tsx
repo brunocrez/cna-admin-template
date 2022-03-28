@@ -7,13 +7,15 @@ import firebase from '../../firebase/config'
 // models
 import { IUser } from '../../models/User'
 
-const ADMIN_TEMPLATE_AUTH = 'admin-template-auth'
+// utils
+import { ADMIN_TEMPLATE_AUTH } from '../../utils'
 
 type AuthContextProps = {
   user?: IUser
   loginGoogle?: () => Promise<void>
-  children?: React.ReactNode,
+  children?: React.ReactNode
   logout?: () => Promise<void>
+  isLoading?: boolean
 }
 
 const AuthContext = createContext<AuthContextProps>({})
@@ -85,11 +87,13 @@ export function AuthProvider(props: AuthContextProps) {
     if (Cookies.get(ADMIN_TEMPLATE_AUTH)) {
       const cancelWatcher = firebase.auth().onIdTokenChanged(settingSection)
       return () => cancelWatcher()
+    } else {
+      setIsLoading(false)
     }
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, loginGoogle, logout }}>
+    <AuthContext.Provider value={{ user, loginGoogle, logout, isLoading }}>
       {props.children}
     </AuthContext.Provider>
   )
