@@ -1,5 +1,6 @@
 // components
 import { Title } from './Title'
+import { Avatar } from './Avatar'
 import { ChangeThemeButton } from './ChangeThemeButton'
 
 // hooks
@@ -15,8 +16,9 @@ export function Header(props: HeaderProps) {
   return (
     <div className='flex'>
       <Title title={props.title} subTitle={props.subTitle} />
-      <div className='flex flex-grow justify-end'>
+      <div className='flex flex-grow justify-end items-center'>
         <ChangeThemeButton theme={theme} changeTheme={changeTheme} />
+        <Avatar />
       </div>
     </div>
   )
