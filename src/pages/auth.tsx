@@ -2,22 +2,38 @@ import { useState } from 'react'
 
 import { InputField } from '../components/auth/InputField'
 
+// icons
+import { WarningIcon } from '../components/icons'
+
 // hooks
 import { useAuth } from '../data/hook/useAuth'
 
 export default function Auth() {
-  const { user, loginGoogle } = useAuth()
+  const { register, login, loginGoogle } = useAuth()
 
   const [mode, setMode] = useState<'login' | 'register'>('login')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [error, setError] = useState<string>()
 
-  function handleSubmit() {
-    if (mode === 'login') {
-      console.log('LOGIN')
-    } else {
-      console.log('REGISTER')
+  async function handleSubmit() {
+    try {
+      if (mode === 'login') {
+        await login(email, password)
+      } else {
+        await register(email, password)
+      }      
+    } catch (err) {
+      console.error(err)
+      showError(err.message)
     }
+  }
+
+  function showError(message: string, timeInSeconds = 5) {
+    setError(message)
+    setTimeout(() => {
+      setError(null)
+    }, timeInSeconds * 1000);
   }
 
   return (
@@ -26,12 +42,22 @@ export default function Auth() {
         <img
           src="https://source.unsplash.com/random"
           alt="Esta é uma imagem gerada automaticamente"
-          className='h-screen w-full object-cover' />
+          className='h-screen w-full object-cover'
+        />
       </div>
       <div className='m-10 w-full md:w-1/2 lg:w-1/3'>
         <h1 className={`text-3xl font-bold mb-6`}>
           { mode === 'login' ? 'Entre com Sua Conta' : 'Cadastre-se na Plataforma' }
         </h1>
+        { error && (
+          <div className={`
+            border border-red-500 rounded-lg
+            bg-red-400 p-3 flex items-center text-red-100
+          `}>
+            {WarningIcon()}
+            <span className={`text-sm text-gray-100 ml-2`}>{error}</span>
+          </div>
+        )}
         <InputField
           label='E-mail'
           value={email}
